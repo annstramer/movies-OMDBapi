@@ -122,10 +122,8 @@ const Movies=() => {
                 placeholder = "Search by Title or Keyword"
               />
               <button className = "browse__terms--btn" onClick = {(event) => {onSearch (event)}} disabled = {isLoading}>
-                <i className = {themeClasses.browseBtnIcon}>
                   {isLoading ? <Spinner/> :
-                    <FontAwesomeIcon icon = {faMagnifyingGlass} className = "fa-solid fa-magnifying-glass"/>}
-                </i>
+                    <FontAwesomeIcon icon = {faMagnifyingGlass} className = {`fa-solid fa-magnifying-glass ${themeClasses.browseBtnIcon}`}/>}
               </button>
             </div>
           </div>

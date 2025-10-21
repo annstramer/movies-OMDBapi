@@ -41,9 +41,7 @@ const Home=() => {
                 />
               </div>
               <button className = {themeClasses.browseBtn} onClick = {() => handleSearchChange(searchTerms)}>
-                <i className = {themeClasses.browseBtnIcon} >
-                <FontAwesomeIcon icon = {faMagnifyingGlass} className = "fa-solid fa-magnifying-glass"/>
-                </i>
+                <FontAwesomeIcon icon = {faMagnifyingGlass} className = {`fa-solid fa-magnifying-glass ${themeClasses.browseBtnIcon}`}/>
               </button>
             </div>
           </div>
