@@ -46,7 +46,8 @@ const Movies=() => {
     });
   }
 
-  function onSearch () {
+  const onSearch = (event) => {
+    event.preventDefault();
     console.log('SearchTerms in onSearch: ', searchTerms);
     navigate(`/movies/${searchTerms}`);
   }
@@ -117,10 +118,10 @@ const Movies=() => {
                 type = "text"
                 value = {searchTerms}
                 onChange = {(event) => setSearchTerms(event.target.value)}
-                onKeyDown = {(event) => event.key === 'Enter' && onSearch()}
+                onKeyDown = {(event) => event.key === 'Enter' && onSearch(event)}
                 placeholder = "Search by Title or Keyword"
               />
-              <button className = "browse__terms--btn" onClick = {onSearch} disabled = {isLoading}>
+              <button className = "browse__terms--btn" onClick = {(event) => {onSearch (event)}} disabled = {isLoading}>
                 <i className = {themeClasses.browseBtnIcon}>
                   {isLoading ? <Spinner/> :
                     <FontAwesomeIcon icon = {faMagnifyingGlass} className = "fa-solid fa-magnifying-glass"/>}
