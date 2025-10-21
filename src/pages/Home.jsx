@@ -4,16 +4,20 @@ import React, {useState, useEffect} from 'react';
 import {useTheme} from "../contexts/ThemeContext";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faMagnifyingGlass} from "@fortawesome/free-solid-svg-icons";
+import {useLoading} from "../contexts/LoadingContext";
+import Spinner from "../components/Spinner";
 
 
 const Home=() => {
   const navigate=useNavigate();
   const [ searchTerms, setSearchTerms ]=useState('');
   const { themeClasses, changeTheme }=useTheme();
+  const {isLoading, startLoading, stopLoading}=useLoading();
 
   function handleSearchChange (str) {
     if (str !== '') {
       setSearchTerms(str);
+      startLoading();
       changeTheme('darkBg');
       navigate(`/movies/${str}`)
     }
@@ -40,8 +44,9 @@ const Home=() => {
                   placeholder = "Search by Title or Keyword"
                 />
               </div>
-              <button className = {themeClasses.browseBtn} onClick = {() => handleSearchChange(searchTerms)}>
-                <FontAwesomeIcon icon = {faMagnifyingGlass} className = {`fa-solid fa-magnifying-glass ${themeClasses.browseBtnIcon}`}/>
+              <button className = {themeClasses.browseBtn} onClick = {() => handleSearchChange(searchTerms)} disabled = {isLoading}>
+                {isLoading ? <Spinner/> :
+                  <FontAwesomeIcon icon = {faMagnifyingGlass} className = {`fa-solid fa-magnifying-glass ${themeClasses.browseBtnIcon}`}/>}
               </button>
             </div>
           </div>
